@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background: linear-gradient(90deg, #007BFF, #0056b3);
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .content {
+            padding: 25px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .order-details {
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .order-details p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+        .cta-button {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background: #28a745;
+            color: white;
+            padding: 14px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .cta-button:hover {
+            background: #218838;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 13px;
+            color: #666;
+            text-align: center;
+        }
+        .footer a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        Order Confirmed! 🎉
+    </div>
+    <div class="content">
+        <p>Hi {{customer_name}},</p>
+        <p>Thank you for your order! We are currently processing it and will notify you once it ships.</p>
+        <div class="order-details">
+            <p><strong>Order Number:</strong> {{order_number}}</p>
+            <p><strong>Total Amount:</strong> ${{total_price}}</p>
+        </div>
+        <p>You can track your order or contact us if you have any questions.</p>
+        <a href="{{tracking_link}}" class="cta-button">Track My Order</a>
+        <p>Best regards,</p>
+        <p><strong>The Dream Wave Team</strong></p>
+    </div>
+    <div class="footer">
+        <p>Need help? <a href="mailto:support@dreamwave.com">Contact Support</a></p>
+        <p>Follow us on <a href="https://whatsapp.com/channel/0029VajvJs0KmCPU9w5y9Z0X">WhatsApp</a> for updates.</p>
+    </div>
+</div>
+
+</body>
+</html>
