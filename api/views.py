@@ -12,17 +12,12 @@ from decimal import Decimal
 from django.conf import settings
 import requests
 from rest_framework.decorators import api_view
-import base64
-from django.utils.crypto import get_random_string
-import json
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-from api.email_service import email_service
 
 # imports from api
 from api.serializers import (CategorySerializer, ProductSerializer, UserRegistrationSerializer,
                             CartItemSerializer, CartSerializer, OrderSerializer)
 from api.models import Category, Product, CartItem, Cart, Orders, Payment
+from api.email_service import email_service
     
 # categories views('POST', 'GET')
 class CreateCategoryView(generics.ListCreateAPIView):
