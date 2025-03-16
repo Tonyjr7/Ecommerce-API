@@ -1,9 +1,9 @@
 from django.db import models
 from django.contrib import auth
 import uuid
-from django.core.validators import RegexValidator
 
 class User(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     username = models.CharField(max_length=50, unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -14,6 +14,7 @@ class User(models.Model):
         return self.username
     
 class Payment(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(auth.models.User, on_delete=models.CASCADE)
     order_id = models.CharField(max_length=255, blank=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
@@ -25,6 +26,7 @@ class Payment(models.Model):
         return f"{self.user}'s Payment: {self.order_id}"
 
 class Category(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=50)
     description = models.TextField()
 
@@ -35,6 +37,7 @@ def upload_to(instance, filename):
     return 'images/{filename}'.format(filename=filename)
     
 class Product(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=500, default="Default description")
     image_url = models.ImageField(upload_to=upload_to, blank=True, null=True)
@@ -47,6 +50,7 @@ class Product(models.Model):
         return self.name
     
 class Cart(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(auth.models.User, related_name='cart', on_delete=models.CASCADE)
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -55,6 +59,7 @@ class Cart(models.Model):
         return f"{self.user}'s Cart"
     
 class CartItem(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     cart = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='cart_items', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(null=True, blank=True)
@@ -65,6 +70,7 @@ class CartItem(models.Model):
         return f"{self.product.name} - {self.quantity}"
     
 class Orders(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(auth.models.User, related_name='orders', on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, related_name='orders', on_delete=models.SET_NULL, null=True, blank=True)
     order_number = models.CharField(max_length=12, unique=True, editable=False, default="")
